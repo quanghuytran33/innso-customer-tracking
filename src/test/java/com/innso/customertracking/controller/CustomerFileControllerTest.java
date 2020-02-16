@@ -6,11 +6,11 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.common.collect.Sets;
 import com.innso.customertracking.AbstractCustomerTrackingControllerIntegrationTest;
 import com.innso.customertracking.entity.CustomerFile;
 import com.innso.customertracking.entity.CustomerMessage;
 import com.innso.customertracking.enumeration.EChannel;
-import java.util.Set;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,7 +27,7 @@ public class CustomerFileControllerTest extends AbstractCustomerTrackingControll
         .channel(EChannel.MAIL).build();
 
     CustomerFile customerFile = CustomerFile.builder().client(sender)
-        .customerMessages(Set.of(message)).build();
+        .customerMessages(Sets.newHashSet(message)).build();
 
     // @formatter:off
     given()
