@@ -20,4 +20,13 @@ public class CustomerFileService {
     return customerFileRepository.findById(id).orElseThrow(
         () -> new ResourceNotFoundException(CustomerFile.class.getName(), String.valueOf(id)));
   }
+
+  public CustomerFile updateById(long id, CustomerFile customerFile) {
+    if (customerFileRepository.existsById(id)) {
+      customerFile.setId(id);
+      return customerFileRepository.save(customerFile);
+    } else {
+      throw new ResourceNotFoundException(CustomerFile.class.getName(), String.valueOf(id));
+    }
+  }
 }

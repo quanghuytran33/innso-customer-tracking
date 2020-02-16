@@ -13,14 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table
 @Data
 @Builder
-@NoArgsConstructor
 public class CustomerMessage {
 
   @Id

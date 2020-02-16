@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CustomerFileController {
 
-  public static final String CUSTOMER_FILE_PATH = "/customerMessage";
+  public static final String CUSTOMER_FILE_PATH = "/customerFile";
 
   private final CustomerFileService customerFileService;
 
@@ -35,17 +35,13 @@ public class CustomerFileController {
   public CustomerFile updateCustomerFile(
       @PathVariable("id") long id,
       @RequestBody CustomerFile customerFile) {
-    customerFile.setId(id);
-    return customerFileService.saveCustomerFile(customerFile);
+    return customerFileService.updateById(id, customerFile);
   }
 
   @GetMapping(value = "/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public CustomerFile retrieveMessage(
-      @PathVariable("id") long id,
-      @RequestBody CustomerFile customerFile) {
-    customerFile.setId(id);
-    return customerFileService.saveCustomerFile(customerFile);
+  public CustomerFile retrieveMessage(@PathVariable("id") long id) {
+    return customerFileService.retrieveCustomerFileById(id);
   }
 
 }

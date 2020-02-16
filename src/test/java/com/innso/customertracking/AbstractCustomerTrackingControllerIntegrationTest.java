@@ -17,7 +17,7 @@ public class AbstractCustomerTrackingControllerIntegrationTest {
   protected ObjectMapper mapper = new ObjectMapper();
 
   @PostConstruct
-  public void init() {
+  protected void init() {
     uri = "http://localhost:" + port;
   }
 

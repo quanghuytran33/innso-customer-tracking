@@ -10,12 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"reference"})})
 @Data
+@Builder
 public class CustomerFile {
 
   @Id
