@@ -3,6 +3,7 @@ package com.innso.customertracking.service;
 import com.innso.customertracking.entity.CustomerFile;
 import com.innso.customertracking.exception.ResourceNotFoundException;
 import com.innso.customertracking.repository.CustomerFileRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -28,5 +29,9 @@ public class CustomerFileService {
     } else {
       throw new ResourceNotFoundException(CustomerFile.class.getName(), String.valueOf(id));
     }
+  }
+
+  public List<CustomerFile> retrieveAllCustomerFile() {
+    return customerFileRepository.findAll();
   }
 }

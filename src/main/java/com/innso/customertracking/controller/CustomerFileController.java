@@ -3,6 +3,7 @@ package com.innso.customertracking.controller;
 
 import com.innso.customertracking.entity.CustomerFile;
 import com.innso.customertracking.service.CustomerFileService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -40,8 +41,14 @@ public class CustomerFileController {
 
   @GetMapping(value = "/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public CustomerFile retrieveMessage(@PathVariable("id") long id) {
+  public CustomerFile retrieveCustomerFile(@PathVariable("id") long id) {
     return customerFileService.retrieveCustomerFileById(id);
+  }
+
+  @GetMapping
+  @ResponseStatus(HttpStatus.OK)
+  public List<CustomerFile> retrieveAllCustomerFile() {
+    return customerFileService.retrieveAllCustomerFile();
   }
 
 }

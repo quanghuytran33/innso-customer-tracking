@@ -1,14 +1,15 @@
 package com.innso.customertracking.entity;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -44,7 +45,13 @@ public class CustomerFile {
   @Column
   private String reference;
 
-  @OneToMany(mappedBy = "customerFile", fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = CustomerMessage.class)
-  private List<CustomerMessage> customerMessages;
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinTable
+      (
+          name = "customer_file_message",
+          joinColumns = {@JoinColumn(name = "customer_file_id")},
+          inverseJoinColumns = {@JoinColumn(name = "customer_message_id", unique = true)}
+      )
+  private Set<CustomerMessage> customerMessages;
 
 }
