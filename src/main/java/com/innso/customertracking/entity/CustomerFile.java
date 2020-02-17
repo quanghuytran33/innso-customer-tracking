@@ -2,26 +2,34 @@ package com.innso.customertracking.entity;
 
 import java.time.LocalDateTime;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"reference"})})
-@Data
 @Builder
+@EqualsAndHashCode
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CustomerFile {
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
   @Column
@@ -34,7 +42,7 @@ public class CustomerFile {
   @Column
   private String reference;
 
-  @OneToMany(mappedBy = "customerFile", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "customerFile")
   private Set<CustomerMessage> customerMessages;
 
 }

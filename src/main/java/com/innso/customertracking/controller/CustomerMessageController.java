@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = CUSTOMER_MESSAGE_PATH, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = CUSTOMER_MESSAGE_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class CustomerMessageController {
 
@@ -24,13 +24,13 @@ public class CustomerMessageController {
 
   private final CustomerMessageService customerMessageService;
 
-  @PostMapping(value = "/create")
+  @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseStatus(HttpStatus.CREATED)
   public CustomerMessage createMessage(@RequestBody CustomerMessage customerMessage) {
     return customerMessageService.saveCustomerMessage(customerMessage);
   }
 
-  @GetMapping
+  @GetMapping(value = "/{id}")
   @ResponseStatus(HttpStatus.OK)
   public CustomerMessage retrieveMessage(@PathVariable("id") long id) {
     return customerMessageService.findById(id);

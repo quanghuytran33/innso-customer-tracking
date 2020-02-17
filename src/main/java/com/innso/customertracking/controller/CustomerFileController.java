@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = CustomerFileController.CUSTOMER_FILE_PATH, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = CustomerFileController.CUSTOMER_FILE_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class CustomerFileController {
 
@@ -24,13 +24,13 @@ public class CustomerFileController {
 
   private final CustomerFileService customerFileService;
 
-  @PostMapping(value = "/create")
+  @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseStatus(HttpStatus.CREATED)
   public CustomerFile createCustomerFile(@RequestBody CustomerFile customerFile) {
     return customerFileService.saveCustomerFile(customerFile);
   }
 
-  @PutMapping(value = "/{id}/update")
+  @PutMapping(value = "/{id}")
   @ResponseStatus(HttpStatus.OK)
   public CustomerFile updateCustomerFile(
       @PathVariable("id") long id,
