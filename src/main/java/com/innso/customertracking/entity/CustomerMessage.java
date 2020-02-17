@@ -1,6 +1,5 @@
 package com.innso.customertracking.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.innso.customertracking.enumeration.EChannel;
 import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
@@ -12,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -51,9 +49,7 @@ public class CustomerMessage {
   @Enumerated(value = EnumType.STRING)
   private EChannel channel;
 
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @JoinColumn(name = "customer_file_id")
-  @JsonIgnore
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = CustomerFile.class)
   private CustomerFile customerFile;
 
 }

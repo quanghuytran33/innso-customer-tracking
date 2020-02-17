@@ -4,6 +4,7 @@ import static com.innso.customertracking.controller.CustomerMessageController.CU
 
 import com.innso.customertracking.entity.CustomerMessage;
 import com.innso.customertracking.service.CustomerMessageService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,6 +35,12 @@ public class CustomerMessageController {
   @ResponseStatus(HttpStatus.OK)
   public CustomerMessage retrieveMessage(@PathVariable("id") long id) {
     return customerMessageService.findById(id);
+  }
+
+  @GetMapping
+  @ResponseStatus(HttpStatus.OK)
+  public List<CustomerMessage> retrieveAllMessage() {
+    return customerMessageService.findAll();
   }
 
 

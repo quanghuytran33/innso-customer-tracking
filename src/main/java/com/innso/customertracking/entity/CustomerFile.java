@@ -1,9 +1,11 @@
 package com.innso.customertracking.entity;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +44,7 @@ public class CustomerFile {
   @Column
   private String reference;
 
-  @OneToMany(mappedBy = "customerFile")
-  private Set<CustomerMessage> customerMessages;
+  @OneToMany(mappedBy = "customerFile", fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = CustomerMessage.class)
+  private List<CustomerMessage> customerMessages;
 
 }

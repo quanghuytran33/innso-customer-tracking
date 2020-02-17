@@ -13,7 +13,7 @@ public class CustomerFileService {
   private final CustomerFileRepository customerFileRepository;
 
   public CustomerFile saveCustomerFile(CustomerFile customerFile) {
-    return customerFileRepository.save(customerFile);
+    return customerFileRepository.saveAndFlush(customerFile);
   }
 
   public CustomerFile retrieveCustomerFileById(long id) {
@@ -24,7 +24,7 @@ public class CustomerFileService {
   public CustomerFile updateById(long id, CustomerFile customerFile) {
     if (customerFileRepository.existsById(id)) {
       customerFile.setId(id);
-      return customerFileRepository.save(customerFile);
+      return customerFileRepository.saveAndFlush(customerFile);
     } else {
       throw new ResourceNotFoundException(CustomerFile.class.getName(), String.valueOf(id));
     }
